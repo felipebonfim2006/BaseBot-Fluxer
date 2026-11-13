@@ -1,13 +1,12 @@
 # 🤖 BaseBot Fluxer
 
-Base otimizada para um bot utilizando `@fluxerjs/core`, estruturada com manipuladores dinâmicos (handlers) para eventos e comandos por prefixo. Totalmente livre do discord.js e sem dependência de banco de dados.
+Base otimizada para um bot utilizando `@fluxerjs/core`, estruturada com manipuladores dinâmicos (handlers) para eventos e comandos por prefixo.
 
 ---
 
 ## 📋 Requisitos
 
 - [Node.js](https://nodejs.org/) 18 ou superior.
-- Uma aplicação criada no [Discord Developer Portal](https://discord.com/developers/applications).
 
 ---
 

@@ -1,0 +1,18 @@
+{
+    "name": "BaseBot-Fluxer",
+    "version": "0.0.1",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon index.js"
+    },
+    "repository": "https://github.com/felipebonfim2006/BaseBot-Fluxer.git",
+    "author": "Felipe Bonfim",
+    "license": "MIT",
+    "private": false,
+    "dependencies": {
+        "@fluxerjs/core": "^3.3.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14"
+    }
+}

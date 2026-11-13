@@ -25,10 +25,10 @@ cp src/configs/ex.config.json src/configs/config.json
 }
 ```
 
-| Campo    | Descrição                                                            |
-| -------- | -------------------------------------------------------------------- |
-| `token`  | Token do bot, disponível na aba **Bot** do Discord Developer Portal. |
-| `prefix` | Prefixo dos comandos enviados pelo chat (ex.: `?` ou `!`).           |
+| Campo    | Descrição                                                  |
+| -------- | ---------------------------------------------------------- |
+| `token`  | Token do bot, disponível na aba **Aplicativos** do Fluxer. |
+| `prefix` | Prefixo dos comandos enviados pelo chat (ex.: `?` ou `!`). |
 
 > **Importante:** O arquivo `config.json` contém o seu token e é extremamente sensível. O projeto já deve incluir um arquivo `.gitignore` na raiz configurado para ignorar o `config.json`, garantindo que suas credenciais nunca sejam publicadas acidentalmente no GitHub.
 

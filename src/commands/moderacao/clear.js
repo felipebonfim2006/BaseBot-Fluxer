@@ -1,6 +1,6 @@
-const { EmbedBuilder } = require("@fluxerjs/core");
+import { EmbedBuilder } from "@fluxerjs/core";
 
-module.exports = {
+export default {
     name: "clear",
     aliases: ["limpar", "c"],
     description: "Apaga mensagens do chat.",

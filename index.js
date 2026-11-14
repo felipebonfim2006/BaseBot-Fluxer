@@ -1,15 +1,18 @@
-const { Client } = require("@fluxerjs/core");
-const { token } = require("./src/configs/config.json");
+import { Client } from "@fluxerjs/core";
+import config from "./src/configs/config.json" with { type: "json" };
+
+const { token } = config;
 
 const client = new Client();
 
 // Carrega os handlers de eventos e comandos
-["Events", "Commands"].forEach((handler) => {
+for (const handler of ["Events", "Commands"]) {
     try {
-        require(`./src/handlers/${handler}.js`)(client);
+        const { default: setup } = await import(`./src/handlers/${handler}.js`);
+        await setup(client);
     } catch (err) {
         console.error(`Erro ao carregar ${handler}:`, err.message);
     }
-});
+}
 
 client.login(token);

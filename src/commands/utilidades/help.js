@@ -1,7 +1,9 @@
-const { EmbedBuilder } = require("@fluxerjs/core");
-const { prefix } = require("../../configs/config.json");
+import { EmbedBuilder } from "@fluxerjs/core";
+import config from "../../configs/config.json" with { type: "json" };
 
-module.exports = {
+const { prefix } = config;
+
+export default {
     name: "help",
     aliases: ["ajuda", "comandos"],
     description: "Lista todos os comandos disponíveis no bot.",

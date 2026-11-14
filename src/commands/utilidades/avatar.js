@@ -1,6 +1,6 @@
-const { EmbedBuilder } = require("@fluxerjs/core");
+import { EmbedBuilder } from "@fluxerjs/core";
 
-module.exports = {
+export default {
     name: "avatar",
     aliases: ["av", "foto"],
     description: "Retorna a imagem de perfil do usuário ou do mencionado.",

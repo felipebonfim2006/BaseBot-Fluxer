@@ -1,9 +1,9 @@
-const { Events } = require("@fluxerjs/core");
+import { Events } from "@fluxerjs/core";
 
-module.exports = {
+export default {
     name: Events.Ready,
     once: true,
     execute(client) {
-        console.log(`O bot iniciou e está pronto!`);
+        console.log(`O ${client.user.username} está online!`);
     },
 };

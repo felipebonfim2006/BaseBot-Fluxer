@@ -1,7 +1,9 @@
-const { Events } = require("@fluxerjs/core");
-const { prefix } = require("../../configs/config.json");
+import { Events } from "@fluxerjs/core";
+import config from "../../configs/config.json" with { type: "json" };
 
-module.exports = {
+const { prefix } = config;
+
+export default {
     name: Events.MessageCreate,
     once: false,
     async execute(message, client) {

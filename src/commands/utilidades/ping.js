@@ -1,6 +1,6 @@
-const { EmbedBuilder } = require("@fluxerjs/core");
+import { EmbedBuilder } from "@fluxerjs/core";
 
-module.exports = {
+export default {
     name: "ping",
     aliases: ["latencia", "p"],
     description: "Retorna o tempo de resposta.",

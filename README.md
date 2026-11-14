@@ -6,7 +6,9 @@ Base otimizada para um bot utilizando `@fluxerjs/core`, estruturada com manipula
 
 ## 📋 Requisitos
 
-- [Node.js](https://nodejs.org/) 18 ou superior.
+- [Node.js](https://nodejs.org/) 22.13 ou superior (versão mínima exigida pelo `@fluxerjs/core`).
+
+> O projeto utiliza **ES Modules** (`import`/`export`). Certifique-se de manter o campo `"type": "module"` no `package.json`.
 
 ---
 
@@ -64,7 +66,7 @@ npm start
 
 ### Modo de desenvolvimento
 
-Para reiniciar o bot automaticamente quando um arquivo for alterado (necessário ter o nodemon configurado no seu `package.json`):
+Para reiniciar o bot automaticamente quando um arquivo for alterado (o nodemon já está configurado no `package.json`):
 
 ```bash
 yarn dev

@@ -1,64 +1,72 @@
 import { EmbedBuilder } from "@fluxerjs/core";
+import GuildModel from "../../database/models/Guild.js";
 import config from "../../configs/config.json" with { type: "json" };
 
 const { prefix } = config;
 
 export default {
-    name: "help",
-    aliases: ["ajuda", "comandos"],
-    description: "Lista todos os comandos disponíveis no bot.",
+  name: "help",
+  aliases: ["ajuda", "comandos"],
+  description: "Lista todos os comandos disponíveis no bot.",
 
-    async executePrefix(client, message, args) {
-        const categories = client.commandCategories;
+  async executePrefix(client, message, args) {
+    const categories = client.commandCategories;
 
-        const embed = new EmbedBuilder()
-            .setColor(0x5865f2) // Azul no formato numérico
-            .setTitle("🤖 Painel de Ajuda")
-            .setDescription(
-                `Aqui estão todos os comandos disponíveis. Use \`${prefix}\` antes de cada um:`,
-            )
-            .setFooter({ text: `Solicitado por: ${message.author.username}` })
-            .setTimestamp();
+    // Busca o prefixo do servidor no banco de dados
+    const guildProfile = await GuildModel.findOne({
+      guildId: message.guild.id,
+    });
+    // Se não existir, usa o prefixo padrão
+    const prefix = guildProfile ? guildProfile.prefix : config.prefix;
 
-        // Agrupa os comandos por categoria lendo o Map que o nosso Handler criou
-        if (categories && categories.size > 0) {
-            for (const [categoria, comandos] of categories.entries()) {
-                // Deixa a primeira letra da categoria maiúscula (ex: utilidades -> Utilidades)
-                const nomeFormatado =
-                    categoria.charAt(0).toUpperCase() + categoria.slice(1);
+    const embed = new EmbedBuilder()
+      .setColor(0x5865f2) // Azul no formato numérico
+      .setTitle("🤖 Painel de Ajuda")
+      .setDescription(
+        `Aqui estão todos os comandos disponíveis. Use \`${prefix}\` antes de cada um:`,
+      )
+      .setFooter({ text: `Solicitado por: ${message.author.username}` })
+      .setTimestamp();
 
-                const listaComandos = comandos
-                    .map((cmd) => {
-                        const nome = cmd.name;
-                        const desc = cmd.description || "Sem descrição";
-                        return `\`${prefix}${nome}\` - ${desc}`;
-                    })
-                    .join("\n");
+    // Agrupa os comandos por categoria lendo o Map que o nosso Handler criou
+    if (categories && categories.size > 0) {
+      for (const [categoria, comandos] of categories.entries()) {
+        // Deixa a primeira letra da categoria maiúscula (ex: utilidades -> Utilidades)
+        const nomeFormatado =
+          categoria.charAt(0).toUpperCase() + categoria.slice(1);
 
-                embed.addFields({
-                    name: `📁 ${nomeFormatado}`,
-                    value: listaComandos || "Nenhum comando.",
-                    inline: false,
-                });
-            }
-        } else {
-            // Fallback: se por acaso não houver categorias, lista tudo solto
-            const comandos = client.prefixCommands;
-            let lista = "";
+        const listaComandos = comandos
+          .map((cmd) => {
+            const nome = cmd.name;
+            const desc = cmd.description || "Sem descrição";
+            return `\`${prefix}${nome}\` - ${desc}`;
+          })
+          .join("\n");
 
-            comandos.forEach((cmd) => {
-                const nome = cmd.name;
-                const desc = cmd.description || "Sem descrição";
-                lista += `\`${prefix}${nome}\` - ${desc}\n`;
-            });
+        embed.addFields({
+          name: `📁 ${nomeFormatado}`,
+          value: listaComandos || "Nenhum comando.",
+          inline: false,
+        });
+      }
+    } else {
+      // Fallback: se por acaso não houver categorias, lista tudo solto
+      const comandos = client.prefixCommands;
+      let lista = "";
 
-            embed.addFields({
-                name: "📜 Comandos",
-                value: lista || "Nenhum comando encontrado.",
-                inline: false,
-            });
-        }
+      comandos.forEach((cmd) => {
+        const nome = cmd.name;
+        const desc = cmd.description || "Sem descrição";
+        lista += `\`${prefix}${nome}\` - ${desc}\n`;
+      });
 
-        return message.reply({ embeds: [embed] });
-    },
+      embed.addFields({
+        name: "📜 Comandos",
+        value: lista || "Nenhum comando encontrado.",
+        inline: false,
+      });
+    }
+
+    return message.reply({ embeds: [embed] });
+  },
 };

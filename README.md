@@ -1,12 +1,13 @@
 # 🤖 BaseBot Fluxer
 
-Base otimizada para um bot utilizando `@fluxerjs/core`, estruturada com manipuladores dinâmicos (handlers) para eventos e comandos por prefixo.
+Base otimizada em ES Modules (ESM) para bots com @fluxerjs/core, estruturada com handlers dinâmicos para eventos e comandos e integração com MongoDB (Mongoose).
 
 ---
 
 ## 📋 Requisitos
 
 - [Node.js](https://nodejs.org/) 22.13 ou superior (versão mínima exigida pelo `@fluxerjs/core`).
+- Um servidor MongoDB acessível (local ou na nuvem).
 
 > O projeto utiliza **ES Modules** (`import`/`export`). Certifique-se de manter o campo `"type": "module"` no `package.json`.
 
@@ -22,15 +23,17 @@ cp src/configs/ex.config.json src/configs/config.json
 
 ```json
 {
-    "token": "seu-token-do-bot",
-    "prefix": "!"
+  "token": "seu-token-do-bot",
+  "prefix": "?",
+  "mongo_uri": "uri-do-mongodb"
 }
 ```
 
-| Campo    | Descrição                                                  |
-| -------- | ---------------------------------------------------------- |
-| `token`  | Token do bot, disponível na aba **Aplicativos** do Fluxer. |
-| `prefix` | Prefixo dos comandos enviados pelo chat (ex.: `?` ou `!`). |
+| Campo       | Descrição                                                       |
+| ----------- | --------------------------------------------------------------- |
+| `token`     | Token do bot, disponível na aba **Aplicativos** do Fluxer.      |
+| `prefix`    | Prefixo dos comandos enviados pelo chat (ex.: `?` ou `!`).      |
+| `mongo_uri` | String de conexão do MongoDB usada para salvar os dados do bot. |
 
 > **Importante:** O arquivo `config.json` contém o seu token e é extremamente sensível. O projeto já deve incluir um arquivo `.gitignore` na raiz configurado para ignorar o `config.json`, garantindo que suas credenciais nunca sejam publicadas acidentalmente no GitHub.
 

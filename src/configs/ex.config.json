@@ -1,4 +1,5 @@
 {
-    "token": "seu-token-do-bot",
-    "prefix": "!"
+  "token": "seu-token-do-bot",
+  "prefix": "?",
+  "mongo_uri": "uri-do-mongodb"
 }

@@ -86,16 +86,18 @@ A estrutura atual do seu projeto BaseBot-Fluxer é:
 ```text
 BaseBot-Fluxer/
 ├── src/
-│   ├── commands/       # Comandos de prefixo separados por categoria
-│   │   ├── moderacao/  # Comandos administrativos (ex: clear.js)
-│   │   └── utilidades/ # Comandos gerais (ex: avatar.js, help.js, ping.js)
-│   ├── configs/        # Arquivo config.json (local) e ex.config.json (modelo)
-│   ├── events/         # Eventos do bot (MessageCreate, Ready, etc.)
+│   ├── commands/         # Comandos de prefixo separados por categoria
+│   │   ├── moderacao/    # Comandos administrativos (ex: clear.js)
+│   │   └── utilidades/   # Comandos gerais (ex: avatar.js, help.js, ping.js)
+│   ├── configs/          # Arquivo config.json (local) e ex.config.json (modelo)
+│   ├── database/         # Conexão e configurações do MongoDB (Mongoose)
+│   │   └── models/       # Schemas e modelos do banco de dados (ex: Guild.js)
+│   ├── events/           # Eventos do bot (MessageCreate, Ready, etc.)
 │   │   ├── client/
 │   │   └── guild/
-│   └── handlers/       # Carregadores automáticos (Commands.js e Events.js)
-├── .gitignore          # Regras do Git para ignorar arquivos sensíveis (node_modules, config.json)
-├── index.js            # Arquivo principal que inicia o bot
-├── package.json        # Dependências e scripts do projeto
-└── yarn.lock           # Árvore de dependências do Yarn
+│   └── handlers/         # Carregadores automáticos (Commands.js e Events.js)
+├── .gitignore            # Regras do Git para ignorar arquivos sensíveis (node_modules, config.json)
+├── index.js              # Arquivo principal que inicia o bot
+├── package.json          # Dependências e scripts do projeto
+└── yarn.lock             # Árvore de dependências do Yarn
 ```
